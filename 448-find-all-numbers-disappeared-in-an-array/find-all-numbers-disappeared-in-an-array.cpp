@@ -2,21 +2,18 @@ class Solution {
 public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
         int n = nums.size();
-        
-        // Mark visited indices as negative
-        for (int i = 0; i < n; i++) {
+        vector<int> ans;
+        for(int i = 0; i < n; i++) {
             int index = abs(nums[i]) - 1;
-            nums[index] = -abs(nums[index]); // Mark as visited
-        }
-
-        // Collect indices that are still positive
-        vector<int> result;
-        for (int i = 0; i < n; i++) {
-            if (nums[i] > 0) {
-                result.push_back(i + 1); // Convert index to number
+            if(nums[index] > 0) {
+                nums[index] = -nums[index];
             }
         }
-
-        return result;
+        for(int i = 0; i < n; i++) {
+            if(nums[i] > 0) {
+                ans.push_back(i + 1);
+            }
+        }
+        return ans;
     }
 };
